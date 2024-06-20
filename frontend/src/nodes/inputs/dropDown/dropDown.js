@@ -1,9 +1,12 @@
 import { useState } from "react";
 import CreateDropDownInputs from "./dropDownInputs/dropDownInputs";
-const CreateDropDown = () => {
+import { useStore } from "../../../store";
+const CreateDropDown = ({ id }) => {
     const [addDropDown, setAddDropDown] = useState(false);
     const [dropDownInputs, setDropDownInputs] = useState(1);
-
+    const [dropDownLabel, setDropDownLabel] = useState([]);
+    const [dropDownOptions, setDropDownOptions] = useState([]);
+    const dropDownLabelHandler = useStore((store) => store.setDropDownLabel);
     const addDropDownHandler = () => {
         setAddDropDown(true);
     }
@@ -18,6 +21,37 @@ const CreateDropDown = () => {
         if (dropDownInputs > 1) {
             setDropDownInputs(dropDownInputs - 1)
         }
+    }
+
+    // const dropDownLabelHandler = (e) => {
+    //     const dropDownId = e.target.id;
+    //     const value = e.target.value;
+    //     console.log("E", value);
+    //     const dropDown = dropDownLabel.filter((dropDown) => dropDown.id === dropDownId);
+
+    //     if (dropDown.length < 1) {
+    //         setDropDownLabel([...dropDownLabel, { id: dropDownId, label: value }])
+    //         return;
+    //     }
+    //     const updatedDropDownLabel = dropDownLabel.map((dropDown) => dropDown.id === dropDownId ? { id: dropDownId, label: value } : dropDown);
+    //     setDropDownLabel(updatedDropDownLabel);
+    // }
+    
+    const dropDownOptionsHandler = (e) => {
+        console.log(dropDownLabel)
+        const dropDownOptionsId = e.target.id;
+        const value = e.target.value;
+        const dropDownId = e.target.name;
+        console.log(dropDownId);
+        const dropDownInput = dropDownOptions.filter((dropDownInput) => dropDownInput.id === dropDownOptionsId);
+    
+        if (dropDownInput.length < 1) {
+            setDropDownOptions([...dropDownOptions, {dropDownId: id, id: dropDownOptionsId, dropDownLabel: value, type: "dropdown"}])
+            return;
+        }
+
+        const updatedDropDownOptions = dropDownOptions.map((dropDownInput) => dropDownInput.dropDownId === id && dropDownInput.id === dropDownOptionsId ? {dropDownId: id, id: dropDownOptionsId, dropDownLabel: value, type: "dropdown" } : dropDownInput);
+        setDropDownOptions(updatedDropDownOptions);
     }
 
     return (
@@ -37,11 +71,11 @@ const CreateDropDown = () => {
             {addDropDown &&
                 <>
                     <div className="flex space-x-11 space-y-2 items-baseline">
-                        <label for="input-label" className="text-white font-mono text-lg"> Dropdown label: </label>
-                        <input type="text" id="input-label" name="input-label" className="rounded-lg h-8 outline-none p-1"></input>
+                        <label for={id} className="text-white font-mono text-lg"> Dropdown label: </label>
+                        <input type="text" id={id} name={id} className="rounded-lg h-8 outline-none p-1" onChange={dropDownLabelHandler}></input>
 
                     </div>
-                    <CreateDropDownInputs inputs={dropDownInputs} />
+                    <CreateDropDownInputs id={id} dropDownOptions={(e) => dropDownOptionsHandler(e)} inputs={dropDownInputs} />
                 </>
             }
 

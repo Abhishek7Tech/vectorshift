@@ -2,17 +2,20 @@ import { useStore } from "../../../store";
 import CreateDropDown from "../dropDown/dropDown";
 import CreateTextInput from "../textInputs/textInput";
 import { useState } from "react";
-const CreateInputs = ({inputs}) => {
+const CreateInputs = ({ inputs }) => {
 
     const [showInputsField, setShowInputsField] = useState([]);
     const [inputsTypes, setInputsTypes] = useState([]);
+    const [inputText, setInputText] = useState([]);
+    const textStateHandler = useStore((store) => store.setTextInputState);
+
 
     const inputTypesHandler = (id, type) => {
         setInputsTypes([...inputsTypes, { id: id, value: type }]);
     }
 
-       // ADD BUTTON HANDLER
-       const addInputHandler = (id) => {
+    // ADD BUTTON HANDLER
+    const addInputHandler = (id) => {
         const Input = inputsTypes.filter((input) => input.id === id);
         if (Input.length === 0) {
             setInputsTypes([...inputsTypes, { id: id, value: 'text' }]);
@@ -24,7 +27,22 @@ const CreateInputs = ({inputs}) => {
 
     }
 
+    const inputTextHandler = (e) => {
+        const inputId = e.target.id;
+        const value = e.target.value;
+        console.log("ID", inputId, "Value", value);
+        const input = inputText.filter((input) => input.id === inputId);
+        if (input.length < 1) {
+            setInputText([...inputText, { id: inputId, value: value, type: "text" }])
+            textStateHandler(inputText)
+            return;
+        }
+        const updatedInputText = inputText.map((input) => input.id === inputId ? { id: inputId, value, type: 'text' } : input)
+        setInputText(updatedInputText);
+        textStateHandler([...inputText])
+    }
 
+    
 
     const inputElements = [];
     for (let i = 0; i < inputs; i++) {
@@ -40,8 +58,8 @@ const CreateInputs = ({inputs}) => {
                     <button type="button" id={fieldId} onClick={(e) => addInputHandler(e.target.id)} className="font-semibold rounded-lg bg-cyan-200 px-[14px] py-[2px] text-black">Add</button>
                     {/* <button type="button" id={fieldId} onClick={(e) => addInputHandler(e.target.id)} className="font-semibold rounded-lg bg-cyan-200 px-[14px] py-[2px] text-black">Add</button> */}
                 </div>
-                {showInputsField.map((field) => field.id === fieldId && field.show === true && field.type === 'text' && <CreateTextInput id={fieldId} fieldset={`Input-${i + 1}:`}/>)}
-                {showInputsField.map((field) => field.id === fieldId && field.show === true && field.type === 'dropdown' && <CreateDropDown/>)}
+                {showInputsField.map((field) => field.id === fieldId && field.show === true && field.type === 'text' && <CreateTextInput id={fieldId} textHandler={inputTextHandler} fieldset={`Input-${i + 1}:`} />)}
+                {showInputsField.map((field) => field.id === fieldId && field.show === true && field.type === 'dropdown' && <CreateDropDown id={fieldId} />)}
 
             </>
         )

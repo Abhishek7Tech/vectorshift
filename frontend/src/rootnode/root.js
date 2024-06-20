@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useStore } from "../store";
 import CreateInputs from "../nodes/inputs/inputTypes/inputType";
 import CreateInputsFields from "../nodes/inputs/createInputFields/createInputsField";
@@ -12,23 +12,25 @@ const RootNode = () => {
     const AddHandle = useStore((state) => state.addHandle);
     const Inputs = useStore((store) => store.inputs);
     const Handles = useStore((store) => store.handles);
-    const formStateHandler = useStore((store) => store.setFormState);
-    const formState = useStore((store) => store.formState);
+    const LabelHandler = useStore((store) => store.dropDownLabel);
+    const inputState = useStore((store) => store.textInputState);
     const [nodeName, setNodeName] = useState('');
-
 
 
     const nodeNameHandler = (e) => {
         setNodeName(e.target.value);
     }
     const formSubmitHandler = (e) => {
-        formStateHandler({nodeName});
         e.preventDefault();
+        console.log("NAME",nodeName)
+        console.log("TEXT INPUT", inputState);
+        console.log("LABELS", LabelHandler);
+
     }
 
-
+   
     return (
-        <form onSubmit={formSubmitHandler} className="z-10 p-4 flex flex-col bg-blue-400 w-2/3 mx-auto space-y-4 rounded-3xl">
+        <form onSubmit={(e) => formSubmitHandler(e)} className="z-10 p-4 flex flex-col bg-blue-400 w-2/3 mx-auto space-y-4 rounded-3xl">
             <div className="flex justify-end">
                 <button type="button" onClick={HideForm} className="text-white font-semibold text-base rounded-lg bg-red-500 px-3 py-[2px]">X</button>
             </div>

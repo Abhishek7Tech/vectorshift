@@ -17,6 +17,9 @@ export const useStore = create((set, get) => ({
   handles: 1,
   addHandle: false,
   formState: [],
+  textInputState: [],
+  dropDownLabel: [],
+  
   getNodeID: (type) => {
     const newIDs = { ...get().nodeIDs };
     if (newIDs[type] === undefined) {
@@ -81,10 +84,31 @@ export const useStore = create((set, get) => ({
       set({ handles: get().handles - 1 })
     }
   },
-  setFormState: (input) => {
+  setFormState: (...input) => {
     set({
       formState: [...get().formState,input]
     })
   },
+  setTextInputState: (input) => {
+    set({
+      textInputState: [{inputType: 'text', ...input}]
+    })
+  },
+  setDropDownLabel:(e) => {
+
+    const dropDownId = e.target.id;
+    const value = e.target.value;
+    const dropDown = get().dropDownLabel.filter((dropDown) => dropDown.id === dropDownId);
+    if (dropDown.length < 1) {
+      set({dropDownLabel: [...get().dropDownLabel, { id: dropDownId, label: value }]})
+      return;
+    }
+    const updatedDropDownLabel = get().dropDownLabel.map((dropDown) => dropDown.id === dropDownId ? { id: dropDownId, label: value } : dropDown);
+
+    set({
+      dropDownLabel: updatedDropDownLabel
+    })
+  }
+  
 
 }));

@@ -1,26 +1,41 @@
 import { useState } from "react";
 
-const CreateHandleFields = ({ inputs }) => {
-    const inputElements = [];
-    const [offsetPositions, setOffsetPositions] = useState([{id: "create-handle-inputs-1", offset: 100}]);
-    
-    const increaseOffsetHandler = (fieldId) => {
-        if (offsetPositions < 500) {
-            const offsetPosition = offsetPositions((offset) => offset.id === fieldId);
-            setOffsetPositions(offsetPositions + 100);
+const CreateHandleFields = ({ handle }) => {
+    const [offsetPositions, setOffsetPositions] = useState([]);
+    const defaultOffset = 100;
+
+    const increaseOffsetHandler = (offsetId) => {
+        const offsetValues = offsetPositions.filter((offset) => offset.id === offsetId);
+        if (offsetValues.length < 1) {
+            setOffsetPositions([...offsetPositions, { id: offsetId, offsetValue: 200 }]);
+            return;
         }
+
+        if (offsetValues[0].offsetValue < 500) {
+            const updateOffsetPositions = offsetPositions.map((offsets) => offsets.id === offsetId ? {id: offsetId, offsetValue: offsets.offsetValue + 100} : offsets);
+            console.log(updateOffsetPositions);
+            setOffsetPositions(updateOffsetPositions);
+        }
+
     }
 
-    const decreaseOffsetHandler = (fieldId) => {
-        if (offsetPositions > 100) {
-            setOffsetPositions(offsetPositions - 100)
+    const decreaseOffsetHandler = (offsetId) => {
+        const offsetValues = offsetPositions.filter((offset) => offset.id === offsetId);
+        if(offsetValues.length < 1) {
+            return;
         }
+  
+        if (offsetValues[0].offsetValue > 100) {
+            const updateOffsetPositions = offsetPositions.map((offsets) => offsets.id === offsetId ? {id: offsetId, offsetValue: offsets.offsetValue - 100} : offsets);
+            setOffsetPositions(updateOffsetPositions);
+        }
+
     }
-    
-    for (let i = 0; i < inputs; i++) {
+    const inputElements = [];
+    for (let i = 0; i < handle; i++) {
         const fieldId = `create-handle-inputs-${i + 1}`;
-        const handleTypeId = `handle-type-${i+ 1}`;
-        const handleIdtype =  `handle-id-type-${i + 1}`;
+        const handleTypeId = `handle-type-${i + 1}`;
+        const handleIdtype = `handle-id-type-${i + 1}`;
         const handlePositionId = `handle-position-${i + 1}`;
         const offsetPosition = offsetPositions.filter((offset) => offset.id === fieldId);
         inputElements.push(
@@ -55,7 +70,7 @@ const CreateHandleFields = ({ inputs }) => {
                     </div>
                     <div className="flex space-x-4 items-center">
                         <label for="handle-position-offset" className="text-white font-mono text-lg">Handle Position Offset:</label>
-                        <span className="rounded-lg px-4 text-center h-[30px] outline-none bg-white text-black text-lg font-mono">{offsetPosition[0].offset}</span>
+                        <span className="rounded-lg px-4 text-center h-[30px] outline-none bg-white text-black text-lg font-mono">{offsetPosition[0]?.offsetValue || defaultOffset}</span>
                         <div className="flex space-x-4 items-center">
                             <button type="button" id={fieldId} onClick={() => increaseOffsetHandler(fieldId)} className="font-semibold text-base rounded-lg bg-cyan-200 px-3 py-[2px]">+</button>
                             <button type="button" id={fieldId} onClick={() => decreaseOffsetHandler(fieldId)} className="font-semibold text-base rounded-lg bg-cyan-200 px-[14px] py-[2px]"> - </button>

@@ -8,7 +8,6 @@ const CreateInputs = ({inputs}) => {
     const [inputsTypes, setInputsTypes] = useState([]);
 
     const inputTypesHandler = (id, type) => {
-        console.log("INPUT", id, type);
         setInputsTypes([...inputsTypes, { id: id, value: type }]);
     }
 
@@ -28,12 +27,12 @@ const CreateInputs = ({inputs}) => {
 
     const inputElements = [];
     for (let i = 0; i < inputs; i++) {
-        const fieldId = `create-inputs-${i + 1}`;
+        const fieldId = `createinputs-${i + 1}`;
         inputElements.push(
             <>
                 <div key={i} className="space-x-4 space-y-4">
                     <label for={fieldId} className="text-white font-mono text-lg">Input-{i + 1}:  </label>
-                    <select id={fieldId} name="create-inputs" className="rounded-lg px-1 h-[30px] outline-none" onChange={(e) => inputTypesHandler(e.target.id, e.target.value)}>
+                    <select id={fieldId} name={fieldId} className="rounded-lg px-1 h-[30px] outline-none" onChange={(e) => inputTypesHandler(e.target.id, e.target.value)}>
                         <option value='text' className="rounded-lg px-1 h-[30px] outline-none">Text</option>
                         <option value='dropdown' className="rounded-lg px-1 h-[30px] outline-none">Dropdown</option>
                     </select>

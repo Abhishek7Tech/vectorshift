@@ -16,6 +16,7 @@ export const useStore = create((set, get) => ({
   inputs: 1,
   handles: 1,
   addHandle: false,
+  formState: [],
   getNodeID: (type) => {
     const newIDs = { ...get().nodeIDs };
     if (newIDs[type] === undefined) {
@@ -80,6 +81,11 @@ export const useStore = create((set, get) => ({
       set({ handles: get().handles - 1 })
     }
   },
+  setFormState: (input) => {
+    set({
+      formState: [...get().formState,input]
+    })
+  }
 
 
 }));

@@ -5,7 +5,6 @@ import CreateInputsFields from "../nodes/inputs/createInputFields/createInputsFi
 import CreateHandles from "../nodes/handles/createHandles/createHandles";
 import CreateHandleFields from "../nodes/handles/createHandlesFields/createHandleFields";
 
-
 const RootNode = () => {
 
     const HideForm = useStore((state) => state.hideForm);
@@ -13,12 +12,19 @@ const RootNode = () => {
     const AddHandle = useStore((state) => state.addHandle);
     const Inputs = useStore((store) => store.inputs);
     const Handles = useStore((store) => store.handles);
+    const formStateHandler = useStore((store) => store.setFormState);
+    const formState = useStore((store) => store.formState);
+    const [nodeName, setNodeName] = useState('');
 
 
 
+    const nodeNameHandler = (e) => {
+        setNodeName(e.target.value);
+    }
     const formSubmitHandler = (e) => {
+        formStateHandler(nodeName);
+        console.log(formState);
         e.preventDefault();
-        // const formData = e.get('node-name');
     }
 
 
@@ -29,7 +35,7 @@ const RootNode = () => {
             </div>
             <div className="flex space-x-4 items-center">
                 <label for="node-name" className="text-white font-mono text-lg">Node name: </label>
-                <input type="text" id="node-name" name="node-name" className="rounded-lg h-8 outline-none p-1"></input>
+                <input autoComplete="disabled" type="text" id="node-name" name="node-name" className="rounded-lg h-8 outline-none p-1" onChange={(e) => nodeNameHandler(e)}></input>
             </div>
             <div className="flex flex-col">
                 <CreateInputsFields />

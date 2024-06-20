@@ -7,6 +7,7 @@ const CreateDropDown = ({ id }) => {
     const [dropDownLabel, setDropDownLabel] = useState([]);
     const [dropDownOptions, setDropDownOptions] = useState([]);
     const dropDownLabelHandler = useStore((store) => store.setDropDownLabel);
+    // const dropDownOptionsHandler = useStore((store) => store.setDropDownOptions);
     const addDropDownHandler = () => {
         setAddDropDown(true);
     }
@@ -37,22 +38,22 @@ const CreateDropDown = ({ id }) => {
     //     setDropDownLabel(updatedDropDownLabel);
     // }
     
-    const dropDownOptionsHandler = (e) => {
-        console.log(dropDownLabel)
-        const dropDownOptionsId = e.target.id;
-        const value = e.target.value;
-        const dropDownId = e.target.name;
-        console.log(dropDownId);
-        const dropDownInput = dropDownOptions.filter((dropDownInput) => dropDownInput.id === dropDownOptionsId);
+    // const dropDownOptionsHandler = (e) => {
+    //     console.log(dropDownLabel)
+    //     const dropDownOptionsId = e.target.id;
+    //     const value = e.target.value;
+    //     const dropDownId = e.target.name;
+    //     console.log(dropDownId);
+    //     const dropDownInput = dropDownOptions.filter((dropDownInput) => dropDownInput.id === dropDownOptionsId);
     
-        if (dropDownInput.length < 1) {
-            setDropDownOptions([...dropDownOptions, {dropDownId: id, id: dropDownOptionsId, dropDownLabel: value, type: "dropdown"}])
-            return;
-        }
+    //     if (dropDownInput.length < 1) {
+    //         setDropDownOptions([...dropDownOptions, {dropDownId: id, id: dropDownOptionsId, dropDownLabel: value, type: "dropdown"}])
+    //         return;
+    //     }
 
-        const updatedDropDownOptions = dropDownOptions.map((dropDownInput) => dropDownInput.dropDownId === id && dropDownInput.id === dropDownOptionsId ? {dropDownId: id, id: dropDownOptionsId, dropDownLabel: value, type: "dropdown" } : dropDownInput);
-        setDropDownOptions(updatedDropDownOptions);
-    }
+    //     const updatedDropDownOptions = dropDownOptions.map((dropDownInput) => dropDownInput.dropDownId === id && dropDownInput.id === dropDownOptionsId ? {dropDownId: id, id: dropDownOptionsId, dropDownLabel: value, type: "dropdown" } : dropDownInput);
+    //     setDropDownOptions(updatedDropDownOptions);
+    // }
 
     return (
         <fieldset className="border-[3px] p-4 border-lime-400 rounded-xl space-y-2">
@@ -75,7 +76,7 @@ const CreateDropDown = ({ id }) => {
                         <input type="text" id={id} name={id} className="rounded-lg h-8 outline-none p-1" onChange={dropDownLabelHandler}></input>
 
                     </div>
-                    <CreateDropDownInputs id={id} dropDownOptions={(e) => dropDownOptionsHandler(e)} inputs={dropDownInputs} />
+                    <CreateDropDownInputs id={id} inputs={dropDownInputs} />
                 </>
             }
 

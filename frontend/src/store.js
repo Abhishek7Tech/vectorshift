@@ -19,7 +19,8 @@ export const useStore = create((set, get) => ({
   formState: [],
   textInputState: [],
   dropDownLabel: [],
-  
+  dropDownOptions: [],
+
   getNodeID: (type) => {
     const newIDs = { ...get().nodeIDs };
     if (newIDs[type] === undefined) {
@@ -63,7 +64,7 @@ export const useStore = create((set, get) => ({
   showForm: () => set({ form: true }),
   hideForm: () => set({ form: false }),
   setAddInput: () => set({ addInput: true }),
-  setAddHandler: () => set({addHandle: true}),
+  setAddHandler: () => set({ addHandle: true }),
   increaseInputs: () => {
     if (get().inputs < 3) {
       set({ inputs: get().inputs + 1 })
@@ -86,21 +87,21 @@ export const useStore = create((set, get) => ({
   },
   setFormState: (...input) => {
     set({
-      formState: [...get().formState,input]
+      formState: [...get().formState, input]
     })
   },
   setTextInputState: (input) => {
     set({
-      textInputState: [{inputType: 'text', ...input}]
+      textInputState: [{ inputType: 'text', ...input }]
     })
   },
-  setDropDownLabel:(e) => {
+  setDropDownLabel: (e) => {
 
     const dropDownId = e.target.id;
     const value = e.target.value;
     const dropDown = get().dropDownLabel.filter((dropDown) => dropDown.id === dropDownId);
     if (dropDown.length < 1) {
-      set({dropDownLabel: [...get().dropDownLabel, { id: dropDownId, label: value }]})
+      set({ dropDownLabel: [...get().dropDownLabel, { id: dropDownId, label: value }] })
       return;
     }
     const updatedDropDownLabel = get().dropDownLabel.map((dropDown) => dropDown.id === dropDownId ? { id: dropDownId, label: value } : dropDown);
@@ -108,7 +109,21 @@ export const useStore = create((set, get) => ({
     set({
       dropDownLabel: updatedDropDownLabel
     })
+  },
+
+  setDropDownOptions: (e) => {
+    const dropDownOptionsId = e.target.id;
+    const value = e.target.value;
+    //lable id
+    const dropDownId = e.target.name;
+    const dropDownInput = get().dropDownOptions.filter((dropDownInput) => dropDownInput.id === dropDownOptionsId);
+    if (dropDownInput.length < 1) {
+      set({ dropDownOptions: [...get().dropDownOptions, { labelId: dropDownId, id: dropDownOptionsId, dropDownLabel: value, type: "dropdown" }] })
+      return;
+    }
+    const updatedDropDownOptions = get().dropDownOptions.map((dropDownInput) => dropDownInput.labelId === dropDownId ? { labelId: dropDownId, id: dropDownOptionsId, dropDownLabel: value, type: "dropdown" } : dropDownInput);
+    set({ dropDownOptions: [...updatedDropDownOptions] });
   }
-  
+
 
 }));

@@ -18,11 +18,12 @@ const RootNode = () => {
 
     const formSubmitHandler = (e) => {
         e.preventDefault();
+        // const formData = e.get('node-name');
     }
 
 
     return (
-        <form onSubmit={() => formSubmitHandler()} className="z-10 p-4 flex flex-col bg-blue-400 w-2/3 mx-auto space-y-4 rounded-3xl">
+        <form onSubmit={formSubmitHandler} className="z-10 p-4 flex flex-col bg-blue-400 w-2/3 mx-auto space-y-4 rounded-3xl">
             <div className="flex justify-end">
                 <button type="button" onClick={HideForm} className="text-white font-semibold text-base rounded-lg bg-red-500 px-3 py-[2px]">X</button>
             </div>

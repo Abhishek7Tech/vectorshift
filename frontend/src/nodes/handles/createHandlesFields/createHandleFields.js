@@ -37,6 +37,7 @@ const CreateHandleFields = ({ handle }) => {
         const handleTypeId = `handle-type-${i + 1}`;
         const handleIdtype = `handle-id-type-${i + 1}`;
         const handlePositionId = `handle-position-${i + 1}`;
+        const handlePositionOffsetId = `handle-position-offset-${i + 1}`;
         const offsetPosition = offsetPositions.filter((offset) => offset.id === fieldId);
         inputElements.push(
             <div id={fieldId} className="flex flex-col">
@@ -69,8 +70,8 @@ const CreateHandleFields = ({ handle }) => {
                         </select>
                     </div>
                     <div className="flex space-x-4 items-center">
-                        <label for="handle-position-offset" className="text-white font-mono text-lg">Handle Position Offset:</label>
-                        <span className="rounded-lg px-4 text-center h-[30px] outline-none bg-white text-black text-lg font-mono">{offsetPosition[0]?.offsetValue || defaultOffset}</span>
+                        <label for={handlePositionOffsetId} className="text-white font-mono text-lg">Handle Position Offset:</label>
+                        <span id={handlePositionOffsetId} name={handlePositionOffsetId} className="rounded-lg px-4 text-center h-[30px] outline-none bg-white text-black text-lg font-mono">{offsetPosition[0]?.offsetValue || defaultOffset}</span>
                         <div className="flex space-x-4 items-center">
                             <button type="button" id={fieldId} onClick={() => increaseOffsetHandler(fieldId)} className="font-semibold text-base rounded-lg bg-cyan-200 px-3 py-[2px]">+</button>
                             <button type="button" id={fieldId} onClick={() => decreaseOffsetHandler(fieldId)} className="font-semibold text-base rounded-lg bg-cyan-200 px-[14px] py-[2px]"> - </button>

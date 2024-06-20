@@ -22,8 +22,9 @@ const CreateInputs = ({inputs}) => {
         setInputsTypes([...inputsTypes, { id: id, value: Input[0].value }]);
         setShowInputsField([...showInputsField, { id: id, show: true, type: 'dropdown' }]);
 
-
     }
+
+
 
     const inputElements = [];
     for (let i = 0; i < inputs; i++) {

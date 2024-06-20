@@ -85,7 +85,6 @@ export const useStore = create((set, get) => ({
     set({
       formState: [...get().formState,input]
     })
-  }
-
+  },
 
 }));

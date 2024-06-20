@@ -22,8 +22,7 @@ const RootNode = () => {
         setNodeName(e.target.value);
     }
     const formSubmitHandler = (e) => {
-        formStateHandler(nodeName);
-        console.log(formState);
+        formStateHandler({nodeName});
         e.preventDefault();
     }
 
@@ -35,7 +34,7 @@ const RootNode = () => {
             </div>
             <div className="flex space-x-4 items-center">
                 <label for="node-name" className="text-white font-mono text-lg">Node name: </label>
-                <input autoComplete="disabled" type="text" id="node-name" name="node-name" className="rounded-lg h-8 outline-none p-1" onChange={(e) => nodeNameHandler(e)}></input>
+                <input autoComplete="off" type="text" id="node-name" name="node-name" className="rounded-lg h-8 outline-none p-1" onChange={(e) => nodeNameHandler(e)}></input>
             </div>
             <div className="flex flex-col">
                 <CreateInputsFields />

@@ -22,7 +22,9 @@ const RootNode = () => {
     const nodeNameHandler = (e) => {
         setNodeName(e.target.value);
     }
-    
+
+
+
     const formSubmitHandler = (e) => {
         e.preventDefault();
         const nodeInputs = [{
@@ -33,6 +35,7 @@ const RootNode = () => {
             handleOptions
         }];
 
+        nodeData(nodeInputs);
 
     }
 

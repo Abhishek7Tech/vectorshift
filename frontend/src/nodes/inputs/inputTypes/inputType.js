@@ -47,8 +47,9 @@ const CreateInputs = ({ inputs }) => {
             return;
         }
         const updatedInputText = inputText.map((input) => input.id === inputId ? { id: inputId, value, type: 'text' } : input)
+        console.log("INPUT TEXT", updatedInputText);
         setInputText(updatedInputText);
-        textStateHandler([...inputText])
+        textStateHandler([...updatedInputText])
     }
 
     

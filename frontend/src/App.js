@@ -3,7 +3,6 @@ import { PipelineUI } from './ui';
 import { SubmitButton } from './submit';
 import CreateNode from './components/createNodes';
 import RootNode from './rootnode/root';
-import Node from './nodes/inputs/node/node';
 import { useStore } from './store';
 function App() {
   const formState = useStore((state) => state.form);
@@ -11,9 +10,8 @@ function App() {
   return (
     <div>
       <PipelineToolbar />
-    {/* {formState &&  <RootNode/>} */}
-    <RootNode/>
-      <Node/>
+    {formState &&  <RootNode/>}
+    {/* <RootNode/> */}
       <PipelineUI />
       <CreateNode />
       <SubmitButton />

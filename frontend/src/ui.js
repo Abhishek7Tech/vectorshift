@@ -10,7 +10,7 @@ import { InputNode } from './nodes/inputNode';
 import { LLMNode } from './nodes/llmNode';
 import { OutputNode } from './nodes/outputNode';
 import { TextNode } from './nodes/textNode';
-
+import { Node } from './nodes/inputs/node/node';
 import 'reactflow/dist/style.css';
 
 const gridSize = 20;
@@ -20,6 +20,7 @@ const nodeTypes = {
   llm: LLMNode,
   customOutput: OutputNode,
   text: TextNode,
+  node: Node
 };
 
 const selector = (state) => ({

@@ -22,6 +22,7 @@ export const useStore = create((set, get) => ({
   dropDownOptions: [],
   handleOptions: [],
   nodeData: [],
+  nodeTypes: [],
 
 
   getNodeID: (type) => {
@@ -95,7 +96,7 @@ export const useStore = create((set, get) => ({
   },
   setTextInputState: (input) => {
     set({
-      textInputState: [{ inputType: 'text', ...input }]
+      textInputState: [...input]
     })
   },
   setDropDownLabel: (e) => {
@@ -133,6 +134,10 @@ export const useStore = create((set, get) => ({
   },
   setNodeData : (data) => {
     set({nodeData: [...get().nodeData,...data]})
-  }
+  },
+  setNodeTypes: (nodes) => {
+    set({nodeTypes: nodes})
+  },
+
 
 }));

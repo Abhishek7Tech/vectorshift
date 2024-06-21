@@ -7,7 +7,6 @@ const CreateDropDown = ({ id }) => {
     const [dropDownLabel, setDropDownLabel] = useState([]);
     const [dropDownOptions, setDropDownOptions] = useState([]);
     const dropDownLabelHandler = useStore((store) => store.setDropDownLabel);
-    // const dropDownOptionsHandler = useStore((store) => store.setDropDownOptions);
     const addDropDownHandler = () => {
         setAddDropDown(true);
     }
@@ -24,36 +23,7 @@ const CreateDropDown = ({ id }) => {
         }
     }
 
-    // const dropDownLabelHandler = (e) => {
-    //     const dropDownId = e.target.id;
-    //     const value = e.target.value;
-    //     console.log("E", value);
-    //     const dropDown = dropDownLabel.filter((dropDown) => dropDown.id === dropDownId);
 
-    //     if (dropDown.length < 1) {
-    //         setDropDownLabel([...dropDownLabel, { id: dropDownId, label: value }])
-    //         return;
-    //     }
-    //     const updatedDropDownLabel = dropDownLabel.map((dropDown) => dropDown.id === dropDownId ? { id: dropDownId, label: value } : dropDown);
-    //     setDropDownLabel(updatedDropDownLabel);
-    // }
-    
-    // const dropDownOptionsHandler = (e) => {
-    //     console.log(dropDownLabel)
-    //     const dropDownOptionsId = e.target.id;
-    //     const value = e.target.value;
-    //     const dropDownId = e.target.name;
-    //     console.log(dropDownId);
-    //     const dropDownInput = dropDownOptions.filter((dropDownInput) => dropDownInput.id === dropDownOptionsId);
-    
-    //     if (dropDownInput.length < 1) {
-    //         setDropDownOptions([...dropDownOptions, {dropDownId: id, id: dropDownOptionsId, dropDownLabel: value, type: "dropdown"}])
-    //         return;
-    //     }
-
-    //     const updatedDropDownOptions = dropDownOptions.map((dropDownInput) => dropDownInput.dropDownId === id && dropDownInput.id === dropDownOptionsId ? {dropDownId: id, id: dropDownOptionsId, dropDownLabel: value, type: "dropdown" } : dropDownInput);
-    //     setDropDownOptions(updatedDropDownOptions);
-    // }
 
     return (
         <fieldset className="border-[3px] p-4 border-lime-400 rounded-xl space-y-2">

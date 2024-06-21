@@ -12,13 +12,13 @@ const RootNode = () => {
     const AddHandle = useStore((state) => state.addHandle);
     const Inputs = useStore((store) => store.inputs);
     const Handles = useStore((store) => store.handles);
-    const Labels = useStore((store) => store.dropDownLabel);
-    const DropDowns = useStore((store) => store.dropDownOptions);
+    const labels = useStore((store) => store.dropDownLabel);
+    const dropDowns = useStore((store) => store.dropDownOptions);
     const inputState = useStore((store) => store.textInputState);
     const [nodeName, setNodeName] = useState('');
     const handleOptions = useStore((store) => store.handleOptions);
     const nodeData = useStore((store) => store.setNodeData);
-    
+    const dropDown= useStore((store) => store.dropDowns);
     const nodeNameHandler = (e) => {
         setNodeName(e.target.value);
     }
@@ -30,12 +30,13 @@ const RootNode = () => {
         const nodeInputs = [{
             nodeName,
             inputState,
-            Labels,
-            DropDowns,
+            labels,
+            dropDowns,
             handleOptions
         }];
-
+        console.log("LABEL", labels, "DropDwns", dropDowns)
         nodeData(nodeInputs);
+        console.log("DROPDWON", dropDown);
 
     }
 

@@ -11,19 +11,28 @@ const CreateInputs = ({ inputs }) => {
 
 
     const inputTypesHandler = (id, type) => {
-        setInputsTypes([...inputsTypes, { id: id, value: type }]);
+        const Input = inputsTypes.filter((input) => input.id === id);
+        if(Input.length < 1) {
+            setInputsTypes([...inputsTypes, { id: id, value: type }]);
+            return;
+        }
+        const updatedInputsType = inputsTypes.map((inputs) => inputs.id === id ? {...inputs, value: type} : inputs);
+        setInputsTypes(updatedInputsType);
     }
 
     // ADD BUTTON HANDLER
     const addInputHandler = (id) => {
+        console.log("TYPES", showInputsField);
         const Input = inputsTypes.filter((input) => input.id === id);
         if (Input.length === 0) {
             setInputsTypes([...inputsTypes, { id: id, value: 'text' }]);
             setShowInputsField([...showInputsField, { id: id, show: true, type: 'text' }]);
             return;
         }
-        setInputsTypes([...inputsTypes, { id: id, value: Input[0].value }]);
-        setShowInputsField([...showInputsField, { id: id, show: true, type: 'dropdown' }]);
+        const updatedInputTypes = inputsTypes.map((inputs) => inputs.id === id ? {...inputs, value: Input[0].value } : inputs);
+        setInputsTypes(updatedInputTypes);
+        console.log("INPUT", Input);
+        setShowInputsField([...showInputsField, { id: id, show: true, type: Input[0].value }]);
 
     }
 

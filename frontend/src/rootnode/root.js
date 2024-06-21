@@ -17,21 +17,26 @@ const RootNode = () => {
     const inputState = useStore((store) => store.textInputState);
     const [nodeName, setNodeName] = useState('');
     const handleOptions = useStore((store) => store.handleOptions);
-
+    const nodeData = useStore((store) => store.setNodeData);
+    
     const nodeNameHandler = (e) => {
         setNodeName(e.target.value);
     }
+    
     const formSubmitHandler = (e) => {
         e.preventDefault();
-        console.log("NAME",nodeName)
-        console.log("TEXT INPUT", inputState);
-        console.log("LABELS", Labels);
-        console.log("DropDowns", DropDowns);
-        console.log("HANDLES", handleOptions);
+        const nodeInputs = [{
+            nodeName,
+            inputState,
+            Labels,
+            DropDowns,
+            handleOptions
+        }];
+
 
     }
 
-   
+
     return (
         <form onSubmit={(e) => formSubmitHandler(e)} className="z-10 p-4 flex flex-col bg-blue-400 w-2/3 mx-auto space-y-4 rounded-3xl">
             <div className="flex justify-end">

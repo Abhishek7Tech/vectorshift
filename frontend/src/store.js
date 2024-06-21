@@ -21,6 +21,7 @@ export const useStore = create((set, get) => ({
   dropDownLabel: [],
   dropDownOptions: [],
   handleOptions: [],
+  nodeData: [],
 
 
   getNodeID: (type) => {
@@ -129,6 +130,9 @@ export const useStore = create((set, get) => ({
 
   gethandleOptions: (handles) => {
     set({handleOptions: handles})
+  },
+  setNodeData : (data) => {
+    set({nodeData: [...get().nodeData,...data]})
   }
 
 }));

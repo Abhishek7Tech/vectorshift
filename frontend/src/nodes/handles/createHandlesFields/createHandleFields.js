@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useStore } from "../../../store";
 const CreateHandleFields = ({ handle }) => {
     const [handleInputs, setHandleInputs] = useState([]);
@@ -7,6 +7,7 @@ const CreateHandleFields = ({ handle }) => {
     const [handleType, setHandleType] = useState("source");
     const [handlesId, setHandleId] = useState("value");
     const [handlePosition, setHandlePosition] = useState("right");
+    const handleOptionsHandler = useStore((store) => store.gethandleOptions);
     const defaultOffset = 100;
     const increaseOffsetHandler = (offsetId) => {
         const offsetValues = offsetPositions.filter((offset) => offset.id === offsetId);
@@ -42,7 +43,7 @@ const CreateHandleFields = ({ handle }) => {
         // console.log("id", handleId);
 
         // console.log("VAL", value, "NAME", handleName, "id", handleId);
-
+        console.log("VALUE", value);
         // console.log("OFFSET", offset, handleName);
         if (handleName === 'handle-type') {
             setHandleType(value);
@@ -56,7 +57,7 @@ const CreateHandleFields = ({ handle }) => {
             setHandlePosition(value);
         }
 
-       
+
         // console.log( handleInputs);
 
     }
@@ -66,16 +67,24 @@ const CreateHandleFields = ({ handle }) => {
         const handleValues = handleInputs.filter((handleInputs) => handleInputs.id === handleId);
         const offset = offsetPositions.filter((offset) => offset.id === handleId);
         const offsetPosition = offset[0]?.offsetValue || defaultOffset;
-         if (handleValues.length < 1) {
-             setHandleInputs([...handleInputs, { id: handleId, handleType, handlesId, handlePosition, offsetPosition }]);
+        console.log("INPUT BEFORe", handleInputs, handleId)
+        if (handleValues.length < 1) {
+            setHandleInputs([...handleInputs, { id: handleId, handleType, handlesId, handlePosition, offsetPosition }]);
+            setHandleType("source");
+            setHandleId("value");
+            setHandlePosition("right");
             return;
         }
-        console.log("INPUTS", handleType, handlesId, handlePosition);
-        const updatedHandleInputs = handleInputs.map((handleInput) => handleInput.id === handleId ? {id: handleId, handleType, handlesId, handlePosition, offsetPosition} : handleInput )
-        console.log("SSS", handleInputs);    
+        const updatedHandleInputs = handleInputs.map((handleInput) => handleInput.id === handleId ? { id: handleId, handleType, handlesId, handlePosition, offsetPosition } : handleInput)
         setHandleInputs(updatedHandleInputs);
-        }
-        console.log("INPUT", handleInputs);
+        setHandleType("source");
+        setHandleId("value");
+        setHandlePosition("right");
+    }
+
+    useEffect(() => {
+        handleOptionsHandler(handleInputs);
+    }, [handleInputs])
 
     const inputElements = [];
     for (let i = 0; i < handle; i++) {

@@ -16,7 +16,7 @@ const RootNode = () => {
     const DropDowns = useStore((store) => store.dropDownOptions);
     const inputState = useStore((store) => store.textInputState);
     const [nodeName, setNodeName] = useState('');
-
+    const handleOptions = useStore((store) => store.handleOptions);
 
     const nodeNameHandler = (e) => {
         setNodeName(e.target.value);
@@ -27,6 +27,7 @@ const RootNode = () => {
         console.log("TEXT INPUT", inputState);
         console.log("LABELS", Labels);
         console.log("DropDowns", DropDowns);
+        console.log("HANDLES", handleOptions);
 
     }
 

@@ -20,7 +20,7 @@ export const useStore = create((set, get) => ({
   textInputState: [],
   dropDownLabel: [],
   dropDownOptions: [],
-
+  handleOptions: [],
 
 
   getNodeID: (type) => {
@@ -127,5 +127,8 @@ export const useStore = create((set, get) => ({
     set({ dropDownOptions: [...updatedDropDownOptions] });
   },
 
+  gethandleOptions: (handles) => {
+    set({handleOptions: handles})
+  }
 
 }));

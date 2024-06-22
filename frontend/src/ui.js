@@ -15,13 +15,16 @@ import 'reactflow/dist/style.css';
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
+
 const nodeTypes = {
   customInput: InputNode,
   llm: LLMNode,
   customOutput: OutputNode,
   text: TextNode,
-  node: Node
+  node: Node,
+  test: Node
 };
+
 
 const selector = (state) => ({
   nodes: state.nodes,

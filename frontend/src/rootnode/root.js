@@ -4,7 +4,6 @@ import CreateInputs from "../nodes/inputs/inputTypes/inputType";
 import CreateInputsFields from "../nodes/inputs/createInputFields/createInputsField";
 import CreateHandles from "../nodes/handles/createHandles/createHandles";
 import CreateHandleFields from "../nodes/handles/createHandlesFields/createHandleFields";
-
 const RootNode = () => {
 
     const HideForm = useStore((state) => state.hideForm);
@@ -18,7 +17,8 @@ const RootNode = () => {
     const [nodeName, setNodeName] = useState('');
     const handleOptions = useStore((store) => store.handleOptions);
     const nodeData = useStore((store) => store.setNodeData);
-    const dropDown= useStore((store) => store.dropDowns);
+    const dropDown = useStore((store) => store.dropDowns);
+
     const nodeNameHandler = (e) => {
         setNodeName(e.target.value);
     }
@@ -36,7 +36,17 @@ const RootNode = () => {
         }];
         console.log("LABEL", labels, "DropDwns", dropDowns)
         nodeData(nodeInputs);
-        console.log("DROPDWON", dropDown);
+
+      
+       
+
+        // if(nodeType?.hasOwnProperty(nodeName)) {
+        //     alert("NODE NAME ALREADY EXSIST")
+        // }else {
+        //     console.log("NODE NAME", nodeName)
+        //     nodeType.nodeName = Node; 
+
+        // }
 
     }
 

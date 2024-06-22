@@ -44,17 +44,20 @@ const TextNode = ({ data }) => {
         setTexts(updateTexts);
 
         // // INPUT HEIGHT
-        // console.log("IN HEIGHT");
-        //         const textFieldHeight = inputHeight.filter((input) => input.id === textId);
-        //         if (textFieldHeight.length < 1) {
-        //             setInputHeight([...inputHeight, { id: textId, height: 1 }])
+        // const height = Math.floor(textLength / 28); 
+        // console.log("IN HEIGHT", height);
+        // if(height > 0) {
+
+        //     const textFieldHeight = inputHeight.filter((input) => input.id === textId);
+        //     if (textFieldHeight.length < 1) {
+        //             setInputHeight([...inputHeight, { id: textId, height: 3 }])
         //             return;
         //         }
-
-        //         const height = Math.floor(textLength / 40); 
-        //         const updateHeight = inputHeight.map((text) => text.id === textId ? {...text, height}: text);
-        //         setInputHeight(updateHeight);
-
+                
+        //                 const updateHeight = inputHeight.map((text) => text.id === textId && text.height < 6 ? {...text, height: text.height + 3}: text);
+        //                 setInputHeight(updateHeight);
+                
+        //     }
         // INPUT WIDTH
         const textFieldWidth = inputWidth.filter((input) => input.id === textId);
         if(textFieldWidth.length < 1) {
@@ -62,7 +65,7 @@ const TextNode = ({ data }) => {
             return;
         }
         console.log("TEXTW", textFieldWidth);
-        const updateWidth = inputWidth.map((text) => text.id === textId && text.width < 28 ? {...text, width: text.width + 4} : text)
+        const updateWidth = inputWidth.map((text) => text.id === textId && text.width < 26 ? {...text, width: text.width + 2} : text)
         console.log("UPDATEW", updateWidth);
         setInputWidth(updateWidth);
     }
@@ -75,13 +78,14 @@ const TextNode = ({ data }) => {
                     console.log("WIDHT", width, inputW);
                     const inputH = inputHeight.filter((input) => input.id === inputs.value);
                     const height = inputH[0]?.height || 1;
+                    console.log("HEIGHT", height)
                     const inputText = texts.filter((text) => text.id === inputs.value);
                     const text = inputText[0]?.input || '{{input}}';
 
                     return (
                         <div key={idx} className="flex space-x-3 ">
                             <label for={inputs.value} className="text-white font-medium text-lg">{`${inputs.value} :`} </label>
-                            {/* <input type={inputs.type} name={inputs.value} value={'{{input}}'} className={`rounded-lg h-8 outline-none p-1 w-[${width}px]`} onChange={(e) => inputLengthHandler(e)}></input> */}
+                            {/* <input type={inputs.type} name={inputs.value} value={text} className={`rounded-lg h-12 outline-none p-1 w-${width}`} onChange={(e) => inputHandler(e)}></input> */}
                             <textarea rows={height} cols={width} type={inputs.type} name={inputs.value} value={text} className={`rounded-lg h-8 outline-none p-1 overflow-hidden`} onChange={(e) => inputHandler(e)}></textarea>
                         </div>
                     )

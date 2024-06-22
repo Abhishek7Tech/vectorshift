@@ -120,13 +120,14 @@ export const useStore = create((set, get) => ({
     const value = e.target.value;
     //lable id
     const dropDownId = e.target.name;
+    console.log("D", dropDownOptionsId)
     const labelName = get().dropDownLabel.filter((label) => label.id === dropDownId);
     const dropDownInput = get().dropDownOptions.filter((dropDownInput) => dropDownInput.id === dropDownOptionsId);
     if (dropDownInput.length < 1) {
       set({ dropDownOptions: [...get().dropDownOptions, { labelId: dropDownId, id: dropDownOptionsId, dropDownLabel: value, type: "dropdown", forLabel: labelName[0].label }] })
       return;
     }
-    const updatedDropDownOptions = get().dropDownOptions.map((dropDownInput) => dropDownInput.labelId === dropDownId ? { labelId: dropDownId, id: dropDownOptionsId, dropDownLabel: value, type: "dropdown", forLabel: labelName[0].label } : dropDownInput);
+    const updatedDropDownOptions = get().dropDownOptions.map((dropDownInput) => dropDownInput.id === dropDownOptionsId ? { labelId: dropDownId, id: dropDownOptionsId, dropDownLabel: value, type: "dropdown", forLabel: labelName[0].label } : dropDownInput);
     set({ dropDownOptions: [...updatedDropDownOptions] });
   },
 

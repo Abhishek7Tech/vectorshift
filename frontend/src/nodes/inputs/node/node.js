@@ -7,7 +7,7 @@ export const Node = () => {
     const {inputState, labels, dropDowns, handleOptions} = nodeData[0];
     console.log("NODEDATA", nodeData, inputState);
     return (
-        <div className="bg-red-200" style={{width: 200, height: "auto", border: '1px solid black'}}>
+        <div className="rounded-md bg-blue-400 border-2 border-white p-2 space-y-3">
            <TextNode data={inputState}/>
            <DropDown labels={labels} dropdownOptions={dropDowns}/>
            <Handlers handler={handleOptions}/>

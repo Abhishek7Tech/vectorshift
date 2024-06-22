@@ -22,9 +22,7 @@ export const useStore = create((set, get) => ({
   dropDownOptions: [],
   handleOptions: [],
   nodeData: [],
-
-  
-
+  currentNode: '',
 
   getNodeID: (type) => {
     const newIDs = { ...get().nodeIDs };
@@ -138,6 +136,10 @@ export const useStore = create((set, get) => ({
   setNodeData : (data) => {
     set({nodeData: [...get().nodeData,...data]})
   },
+
+  setCurrentNode: (node) => {
+    set({currentNode: node})
+  }
 
 
 

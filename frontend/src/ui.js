@@ -2,7 +2,7 @@
 // Displays the drag-and-drop UI
 // --------------------------------------------------
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
 import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
@@ -22,7 +22,6 @@ const nodeTypes = {
   customOutput: OutputNode,
   text: TextNode,
   node: Node,
-  test: Node
 };
 
 
@@ -39,6 +38,7 @@ const selector = (state) => ({
 export const PipelineUI = () => {
     const reactFlowWrapper = useRef(null);
     const [reactFlowInstance, setReactFlowInstance] = useState(null);
+    
     const {
       nodes,
       edges,
@@ -46,11 +46,11 @@ export const PipelineUI = () => {
       addNode,
       onNodesChange,
       onEdgesChange,
-      onConnect
+      onConnect,
     } = useStore(selector, shallow);
 
     const getInitNodeData = (nodeID, type) => {
-      let nodeData = { id: nodeID, nodeType: `${type}` };
+      let nodeData = { id: nodeID, nodeType: `${type}`};
       return nodeData;
     }
 
@@ -62,7 +62,6 @@ export const PipelineUI = () => {
           if (event?.dataTransfer?.getData('application/reactflow')) {
             const appData = JSON.parse(event.dataTransfer.getData('application/reactflow'));
             const type = appData?.nodeType;
-      
             // check if the dropped element is valid
             if (typeof type === 'undefined' || !type) {
               return;

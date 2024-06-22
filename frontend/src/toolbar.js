@@ -11,7 +11,7 @@ const nodeData = useStore((store) => store.nodeData);
                 <DraggableNode type='llm' label='LLM' />
                 <DraggableNode type='customOutput' label='Output' />
                 <DraggableNode type='text' label='Text' />
-            {nodeData && nodeData.map((data, idx) => <DraggableNode key={idx} type={data.nodeName} label={data.nodeName}/>)}
+            {nodeData && nodeData.map((data, idx) => <DraggableNode key={idx} type="node" id={data.nodeName} label={data.nodeName}/>)}
             </div>
         </div>
     );

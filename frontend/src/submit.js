@@ -8,12 +8,10 @@ export const SubmitButton = () => {
 
     const API_URL = 'http://127.0.0.1:8000/pipelines/parse';
 
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
        
-        const pipeline = { edges };
+        const pipeline = {nodes, edges };
 
         try {
             const response = await axios.post(API_URL, pipeline, {

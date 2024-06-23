@@ -122,7 +122,6 @@ export const useStore = create((set, get) => ({
     const value = e.target.value;
     //lable id
     const dropDownId = e.target.name;
-    console.log("D", dropDownOptionsId)
     const labelName = get().dropDownLabel.filter((label) => label.id === dropDownId);
     const dropDownInput = get().dropDownOptions.filter((dropDownInput) => dropDownInput.id === dropDownOptionsId);
     if (dropDownInput.length < 1) {
@@ -141,7 +140,6 @@ export const useStore = create((set, get) => ({
   },
 
   setCurrentNode: (node) => {
-    console.log("CURR", node);
     set({ currentNode: node })
   },
 

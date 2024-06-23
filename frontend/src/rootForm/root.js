@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useStore } from "../store";
 import CreateInputs from "../nodes/inputs/inputTypes/inputType";
 import CreateInputsFields from "../nodes/inputs/createInputFields/createInputsField";
@@ -16,8 +16,8 @@ const RootNode = () => {
     const inputState = useStore((store) => store.textInputState);
     const [nodeName, setNodeName] = useState('');
     const handleOptions = useStore((store) => store.handleOptions);
-    const nodeData = useStore((store) => store.setNodeData);
-    const dropDown = useStore((store) => store.dropDowns);
+    const setNodeData = useStore((store) => store.setNodeData);
+    const nodeData = useStore((store) => store.nodeData);
 
     const nodeNameHandler = (e) => {
         setNodeName(e.target.value);
@@ -27,6 +27,12 @@ const RootNode = () => {
 
     const formSubmitHandler = (e) => {
         e.preventDefault();
+        const isNodeNameValid = nodeData.filter((nodes) => nodes.nodeName === nodeName)
+        if(isNodeNameValid.length === 1) {
+            setNodeName('')
+            alert("Nodename already exsist");
+            return;
+        }
         const nodeInputs = [{
             nodeName,
             inputState,
@@ -34,9 +40,9 @@ const RootNode = () => {
             dropDowns,
             handleOptions
         }];
-        nodeData(nodeInputs);
+        setNodeData(nodeInputs);
 
-
+        HideForm()
 
 
     }
@@ -61,7 +67,7 @@ const RootNode = () => {
             </div>
             {AddHandle && <CreateHandleFields handle={Handles} />}
 
-            <button type="submit" className="bg-cyan-200 w-fit mx-auto px-2 pb-1 rounded-md">Create</button>
+            <button type="submit" className="bg-cyan-200 w-fit mx-auto px-2 pb-1 rounded-md" >Create</button>
         </form>
     )
 }

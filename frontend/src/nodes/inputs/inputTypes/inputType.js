@@ -31,7 +31,6 @@ const CreateInputs = ({ inputs }) => {
         }
         const updatedInputTypes = inputsTypes.map((inputs) => inputs.id === id ? {...inputs, value: Input[0].value } : inputs);
         setInputsTypes(updatedInputTypes);
-        console.log("INPUT", Input);
         setShowInputsField([...showInputsField, { id: id, show: true, type: Input[0].value }]);
 
     }
@@ -39,16 +38,13 @@ const CreateInputs = ({ inputs }) => {
     const inputTextHandler = (e) => {
         const inputId = e.target.id;
         const value = e.target.value;
-        console.log("ID", inputId, "Value", value);
         const input = inputText.filter((input) => input.id === inputId);
         if (input.length < 1) {
             setInputText([...inputText, { id: inputId, value: value, type: "text" }])
-            console.log("INPUT TEXT",inputText)
             textStateHandler([...inputText, { id: inputId, value: value, type: "text"}])
             return;
         }
         const updatedInputText = inputText.map((input) => input.id === inputId ? { id: inputId, value, type: 'text' } : input)
-        console.log("INPUT TEXT", updatedInputText);
         setInputText(updatedInputText);
         textStateHandler([...updatedInputText])
     }
@@ -67,7 +63,6 @@ const CreateInputs = ({ inputs }) => {
                         <option value='dropdown' className="rounded-lg px-1 h-[30px] outline-none">Dropdown</option>
                     </select>
                     <button type="button" id={fieldId} onClick={(e) => addInputHandler(e.target.id)} className="font-semibold rounded-lg bg-cyan-200 px-[14px] py-[2px] text-black">Add</button>
-                    {/* <button type="button" id={fieldId} onClick={(e) => addInputHandler(e.target.id)} className="font-semibold rounded-lg bg-cyan-200 px-[14px] py-[2px] text-black">Add</button> */}
                 </div>
                 {showInputsField.map((field) => field.id === fieldId && field.show === true && field.type === 'text' && <CreateTextInput id={fieldId} textHandler={inputTextHandler} fieldset={`Input-${i + 1}:`} />)}
                 {showInputsField.map((field) => field.id === fieldId && field.show === true && field.type === 'dropdown' && <CreateDropDown id={fieldId} />)}

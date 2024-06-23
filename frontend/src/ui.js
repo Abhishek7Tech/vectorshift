@@ -63,7 +63,6 @@ export const PipelineUI = () => {
             const appData = JSON.parse(event.dataTransfer.getData('application/reactflow'));
             const type = appData?.nodeType;
             const nodName = appData?.currentNode;
-            console.log("APPDATA", nodName)
             // check if the dropped element is valid
             if (typeof type === 'undefined' || !type) {
               return;
@@ -75,7 +74,6 @@ export const PipelineUI = () => {
             });
 
             const nodeID = getNodeID(type);
-            console.log("NODE__ID", nodeID)
             const newNode = {
               id: nodeID,
               type,

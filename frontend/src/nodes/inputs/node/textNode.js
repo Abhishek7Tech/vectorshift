@@ -8,7 +8,6 @@ const TextNode = ({ data, nodeId }) => {
     const [inputHeight, setInputHeight] = useState([]);
     const [texts, setTexts] = useState([]);
     const [textLength, setTextLength] = useState(0);
-    // const [handle, setHandle] = useState([]);
     const getTextHandlerValue = useStore((store) => store.getTextHandlerValue);
     const textHandlerValue = useStore((store) => store.textHandlerValue);
     const setTextHandle = useStore((store) => store.setTextHandle);
@@ -22,19 +21,15 @@ const TextNode = ({ data, nodeId }) => {
         const textId = e.target.name;
 
       
-        // getTextHandlerValue(value);
 
         const createHandle = isValidInput(value);
         if (createHandle) {
-            console.log("FOUNDDD", createHandle);
             const id = nodeId
-            // setHandle([{ id: textId, handleState: true }])
             setTextHandle([{ textId: textId, id, handleState: true }])
         }
 
         if (createHandle) {
             const textHandler = textHandlerValue?.filter((textHandle) => textHandle.id === nodeId && textHandle.textId === textId);
-            console.log("FOUNDDD TEEEXXXXXTTTT", createHandle);
 
             if (textHandler.length < 1) {
                 const id = nodeId;
@@ -56,7 +51,6 @@ const TextNode = ({ data, nodeId }) => {
 
         // // INPUT HEIGHT
         const height = Math.floor(textLength / 28);
-        console.log("IN HEIGHT", height);
         if (height > 0) {
 
             const textFieldHeight = inputHeight.filter((input) => input.id === textId);
@@ -75,9 +69,7 @@ const TextNode = ({ data, nodeId }) => {
             setInputWidth([...inputWidth, { id: textId, width: 16 }]);
             return;
         }
-        console.log("TEXTW", textFieldWidth);
         const updateWidth = inputWidth.map((text) => text.id === textId && text.width < 26 ? { ...text, width: text.width + 2 } : text)
-        console.log("UPDATEW", updateWidth);
         setInputWidth(updateWidth);
         setTextLength(0);
     }
@@ -88,18 +80,14 @@ const TextNode = ({ data, nodeId }) => {
                 data?.map((inputs, idx) => {
                     const inputW = inputWidth.filter((input) => input.id === inputs.value);
                     const width = inputW[0]?.width || 12;
-                    console.log("WIDHT", width, inputW);
                     const inputH = inputHeight.filter((input) => input.id === inputs.value);
                     const height = inputH[0]?.height || 1;
-                    console.log("HEIGHT", height)
                     const inputText = texts.filter((text) => text.id === inputs.value);
                     const text = inputText[0]?.input || '';
                     return (
                         <>
-                            {/* {handle.map((handle) => idx === 0 && handle.id === inputs.value && handle.handleState === true && <TextHandle handleName={text} id={idx} />)} */}
                             <div key={idx} className="flex space-x-3 space-y-3 items-baseline">
                                 <label for={inputs.value} className="text-white font-medium text-lg">{`${inputs.value} :`} </label>
-                                {/* <input type={inputs.type} name={inputs.value} value={text} className={`rounded-lg h-12 outline-none p-1 w-${width}`} onChange={(e) => inputHandler(e)}></input> */}
                                 <textarea rows={height} cols={width} type={inputs.type} name={inputs.value} value={text} className={`rounded-lg h-8 outline-none p-1 overflow-hidden`} onChange={(e) => inputHandler(e)}></textarea>
                             </div>
                         </>

@@ -4,8 +4,6 @@ import { useStore } from "../../../store";
 const CreateDropDown = ({ id }) => {
     const [addDropDown, setAddDropDown] = useState(false);
     const [dropDownInputs, setDropDownInputs] = useState(1);
-    const [dropDownLabel, setDropDownLabel] = useState([]);
-    const [dropDownOptions, setDropDownOptions] = useState([]);
     const dropDownLabelHandler = useStore((store) => store.setDropDownLabel);
     const addDropDownHandler = () => {
         setAddDropDown(true);

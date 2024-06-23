@@ -40,11 +40,7 @@ const CreateHandleFields = ({ handle }) => {
     const handleTypeHandler = (e) => {
         const handleName = e.target.name;
         const value = e.target.value;
-        // console.log("id", handleId);
 
-        // console.log("VAL", value, "NAME", handleName, "id", handleId);
-        console.log("VALUE", value);
-        // console.log("OFFSET", offset, handleName);
         if (handleName === 'handle-type') {
             setHandleType(value);
         }
@@ -58,7 +54,6 @@ const CreateHandleFields = ({ handle }) => {
         }
 
 
-        // console.log( handleInputs);
 
     }
 
@@ -67,7 +62,6 @@ const CreateHandleFields = ({ handle }) => {
         const handleValues = handleInputs.filter((handleInputs) => handleInputs.id === handleId);
         const offset = offsetPositions.filter((offset) => offset.id === handleId);
         const offsetPosition = offset[0]?.offsetValue || defaultOffset;
-        console.log("INPUT BEFORe", handleInputs, handleId)
         if (handleValues.length < 1) {
             setHandleInputs([...handleInputs, { id: handleId, handleType, handlesId, handlePosition, offsetPosition }]);
             setHandleType("source");

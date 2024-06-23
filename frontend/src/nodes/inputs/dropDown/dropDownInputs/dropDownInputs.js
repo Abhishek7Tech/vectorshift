@@ -3,12 +3,10 @@ const CreateDropDownInputs = ({inputs,id}) => {
    
     const dropDownOptionsHandler = useStore((store) => store.setDropDownOptions);
 
-   console.log("I", inputs, id)
     const inputElements = [];
     for (let i = 0; i < inputs; i++) {
 
         const fieldId = `${id}-dropdown-${i + 1}`;
-        console.log("ID", fieldId)
         inputElements.push(
             <>
                 <div key={i} className="space-x-4 space-y-4 flex items-baseline">

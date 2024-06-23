@@ -12,7 +12,6 @@ function App() {
       <PipelineToolbar />
     {formState &&  <RootNode/>}
       <PipelineUI />
-      <CreateNode />
       <SubmitButton />
     </div>
   );

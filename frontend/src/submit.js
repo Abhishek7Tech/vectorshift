@@ -1,5 +1,6 @@
 // submit.js
 import { useStore } from "./store";
+import CreateNode from "./components/createNodes";
 import axios from 'axios';
 export const SubmitButton = () => {
     const nodes = useStore((store) => store.nodes);
@@ -35,8 +36,10 @@ export const SubmitButton = () => {
     }
 
     return (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <button type="submit" onClick={(e) => handleSubmit(e)}>Submit</button>
+        <div className="flex w-fit mx-auto space-x-8">
+            <CreateNode />
+           
+            <button type="submit" className="bg-blue-400 text-white w-fit mx-auto px-2 py-1 pb-1 rounded-md" onClick={(e) => handleSubmit(e)}>Submit</button>
         </div>
     );
 }

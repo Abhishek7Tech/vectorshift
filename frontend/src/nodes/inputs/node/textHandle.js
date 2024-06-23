@@ -4,21 +4,11 @@ function removeBraces(handleName) {
     return handleName.replace(regex, '');
   }
 
-  function getSpanDistance(element) {
-    const rect = element?.getBoundingClientRect();
-    const scrollTop = window?.scrollY || document?.documentElement?.scrollTop;
-    return rect?.top + scrollTop;
-  }
-  
-  
-  
-  const TextHandle = ({ handleName = 'handle', id = 1, offsetPosition = 120 }) => {
-      console.log("TEXT HANDLE", handleName, id, offsetPosition)
+  const TextHandle = ({ handleName = 'handle', id = 1, size }) => {
+      console.log("TEXT HANDLE", handleName, id)
       
-        const span = document.getElementById("name"); 
-      const distanceFromTop = getSpanDistance(span);
-      console.log('Distance from top:', distanceFromTop);
-
+  const fromTop = size * 25;
+    console.log("FROM TOP", fromTop, size)
     const name = removeBraces(handleName);
 
     
@@ -27,8 +17,7 @@ function removeBraces(handleName) {
             <Handle type={"target"}
                 id={id}
                 position={Position.Left}
-                style={{top: 27 * id + 1}}
-                
+                style={{top: `${(100 - fromTop)/3}%`}}             
             >
             </Handle>
             <span id="name" className="text-white font-medium text-lg">{name}</span>

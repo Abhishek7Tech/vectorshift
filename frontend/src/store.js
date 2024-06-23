@@ -23,6 +23,9 @@ export const useStore = create((set, get) => ({
   handleOptions: [],
   nodeData: [],
   currentNode: '',
+  textHandle: [],
+  textInput: [],
+  textHandlerValue: [],
 
   getNodeID: (type) => {
     const newIDs = { ...get().nodeIDs };
@@ -131,17 +134,23 @@ export const useStore = create((set, get) => ({
   },
 
   gethandleOptions: (handles) => {
-    set({handleOptions: handles})
+    set({ handleOptions: handles })
   },
-  setNodeData : (data) => {
-    set({nodeData: [...get().nodeData,...data]})
+  setNodeData: (data) => {
+    set({ nodeData: [...get().nodeData, ...data] })
   },
 
   setCurrentNode: (node) => {
-    console.log("CURR",node);
-    set({currentNode:node})
+    console.log("CURR", node);
+    set({ currentNode: node })
+  },
+
+  setTextHandle: (handles) => {
+      set({ textHandle: [...get().textHandle, ...handles] })
+  },
+
+  getTextHandlerValue: (text) => {
+    set({textHandlerValue: [...get().textHandlerValue, ...text]})
   }
-
-
 
 }));

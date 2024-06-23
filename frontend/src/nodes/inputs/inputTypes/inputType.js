@@ -43,7 +43,8 @@ const CreateInputs = ({ inputs }) => {
         const input = inputText.filter((input) => input.id === inputId);
         if (input.length < 1) {
             setInputText([...inputText, { id: inputId, value: value, type: "text" }])
-            textStateHandler(inputText)
+            console.log("INPUT TEXT",inputText)
+            textStateHandler([...inputText, { id: inputId, value: value, type: "text"}])
             return;
         }
         const updatedInputText = inputText.map((input) => input.id === inputId ? { id: inputId, value, type: 'text' } : input)

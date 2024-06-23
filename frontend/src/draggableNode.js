@@ -1,17 +1,20 @@
 // draggableNode.js
-
-export const DraggableNode = ({ type, label }) => {
-    const onDragStart = (event, nodeType) => {
-      const appData = { nodeType }
+import { useStore } from "./store";
+export const DraggableNode = ({ type, label,id }) => {
+const currentNodeHandler = useStore((store) => store.setCurrentNode)
+    
+  const onDragStart = (event, nodeType) => {
+      const appData = { nodeType, currentNode: id }
       event.target.style.cursor = 'grabbing';
       event.dataTransfer.setData('application/reactflow', JSON.stringify(appData));
       event.dataTransfer.effectAllowed = 'move';
+      currentNodeHandler(id)
     };
   
     return (
       <div
         className={type}
-        onDragStart={(event) => onDragStart(event, type)}
+        onDragStart={(event) => onDragStart(event, type,id)}
         onDragEnd={(event) => (event.target.style.cursor = 'grab')}
         style={{ 
           cursor: 'grab', 

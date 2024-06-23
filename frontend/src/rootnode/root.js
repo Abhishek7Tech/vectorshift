@@ -18,15 +18,13 @@ const RootNode = () => {
     const handleOptions = useStore((store) => store.handleOptions);
     const nodeData = useStore((store) => store.setNodeData);
     const dropDown = useStore((store) => store.dropDowns);
-    const setCurrentNode = useStore((store) => store.setCurrentNode);
-    const currentNode = useStore((store) => store.currentNode);
 
     const nodeNameHandler = (e) => {
         setNodeName(e.target.value);
     }
-    
-    
-    
+
+
+
     const formSubmitHandler = (e) => {
         e.preventDefault();
         const nodeInputs = [{
@@ -37,18 +35,9 @@ const RootNode = () => {
             handleOptions
         }];
         nodeData(nodeInputs);
-        console.log("NODE", currentNode, nodeName);
-        setCurrentNode(nodeName);
-      
-       
 
-        // if(nodeType?.hasOwnProperty(nodeName)) {
-        //     alert("NODE NAME ALREADY EXSIST")
-        // }else {
-        //     console.log("NODE NAME", nodeName)
-        //     nodeType.nodeName = Node; 
 
-        // }
+
 
     }
 

@@ -138,7 +138,8 @@ export const useStore = create((set, get) => ({
   },
 
   setCurrentNode: (node) => {
-    set({currentNode: node})
+    console.log("CURR",node);
+    set({currentNode:node})
   }
 
 

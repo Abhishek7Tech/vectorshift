@@ -17,7 +17,7 @@ const CreateHandleFields = ({ handle }) => {
         }
 
         if (offsetValues[0].offsetValue < 250) {
-            const updateOffsetPositions = offsetPositions.map((offsets) => offsets.id === offsetId ? { id: offsetId, offsetValue: offsets.offsetValue + 100 } : offsets);
+            const updateOffsetPositions = offsetPositions.map((offsets) => offsets.id === offsetId ? { id: offsetId, offsetValue: offsets.offsetValue + 50 } : offsets);
             console.log(updateOffsetPositions);
             setOffsetPositions(updateOffsetPositions);
         }
@@ -31,7 +31,7 @@ const CreateHandleFields = ({ handle }) => {
         }
 
         if (offsetValues[0].offsetValue > 100) {
-            const updateOffsetPositions = offsetPositions.map((offsets) => offsets.id === offsetId ? { id: offsetId, offsetValue: offsets.offsetValue - 100 } : offsets);
+            const updateOffsetPositions = offsetPositions.map((offsets) => offsets.id === offsetId ? { id: offsetId, offsetValue: offsets.offsetValue - 50 } : offsets);
             setOffsetPositions(updateOffsetPositions);
         }
 

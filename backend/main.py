@@ -9,7 +9,7 @@ app = FastAPI()
 
 from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 app = FastAPI()
 
@@ -27,9 +27,9 @@ class Node(BaseModel):
     type: str
     position: Position
     data: NodeData
-    dragging: bool
+    dragging: Optional[bool] = None
     height: float
-    selected: bool
+    selected: Optional[bool] = None
     width: float
     
 class EdgeMarker(BaseModel):

@@ -5,7 +5,7 @@ import axios from 'axios';
 export const SubmitButton = () => {
     const nodes = useStore((store) => store.nodes);
     const edges = useStore((store) => store.edges);
-    
+    console.log("NODE", nodes)
 
     const API_URL = 'http://127.0.0.1:8000/pipelines/parse';
 

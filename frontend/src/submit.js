@@ -39,7 +39,7 @@ export const SubmitButton = () => {
         <div className="flex w-fit mx-auto space-x-8">
             <CreateNode />
            
-            <button type="submit" className="bg-blue-400 text-white w-fit mx-auto px-2 py-1 pb-1 rounded-md" onClick={(e) => handleSubmit(e)}>Submit</button>
+            <button type="submit" className="bg-blue-400 text-white w-fit mx-auto px-2 py-1 pb-1 rounded-md hover:bg-black" onClick={(e) => handleSubmit(e)}>Submit</button>
         </div>
     );
 }

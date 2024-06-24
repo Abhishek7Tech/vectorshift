@@ -67,7 +67,7 @@ export const useStore = create((set, get) => ({
       }),
     });
   },
-  showForm: () => set({ form: true }),
+  showForm: () => set({ form: true, textInputState: [], dropDownLabel: [], textInputState: [], dropDownOptions: [], handleOptions: [], inputs: 1, handles: 1,addHandle: false, addInput: false}),
   hideForm: () => set({ form: false }),
   setAddInput: () => set({ addInput: true }),
   setAddHandler: () => set({ addHandle: true }),

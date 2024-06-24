@@ -12,11 +12,11 @@ const CreateHandleFields = ({ handle }) => {
     const increaseOffsetHandler = (offsetId) => {
         const offsetValues = offsetPositions.filter((offset) => offset.id === offsetId);
         if (offsetValues.length < 1) {
-            setOffsetPositions([...offsetPositions, { id: offsetId, offsetValue: 200 }]);
+            setOffsetPositions([...offsetPositions, { id: offsetId, offsetValue: 150 }]);
             return;
         }
 
-        if (offsetValues[0].offsetValue < 500) {
+        if (offsetValues[0].offsetValue < 250) {
             const updateOffsetPositions = offsetPositions.map((offsets) => offsets.id === offsetId ? { id: offsetId, offsetValue: offsets.offsetValue + 100 } : offsets);
             console.log(updateOffsetPositions);
             setOffsetPositions(updateOffsetPositions);

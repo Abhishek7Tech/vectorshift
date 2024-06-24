@@ -28,7 +28,7 @@ const RootNode = () => {
     const formSubmitHandler = (e) => {
         e.preventDefault();
         const isNodeNameValid = nodeData.filter((nodes) => nodes.nodeName === nodeName)
-        if(isNodeNameValid.length === 1) {
+        if (isNodeNameValid.length === 1) {
             setNodeName('')
             alert("Nodename already exsist");
             return;
@@ -42,14 +42,15 @@ const RootNode = () => {
         }];
         setNodeData(nodeInputs);
 
-        HideForm()
+        HideForm();
+        setNodeName('');
 
 
     }
 
 
     return (
-        <form onSubmit={(e) => formSubmitHandler(e)} className="z-10 p-4 flex flex-col bg-blue-400 w-2/3 mx-auto space-y-4 rounded-3xl">
+        <form onSubmit={(e) => formSubmitHandler(e)} className="z-10 p-4 absolute flex flex-col bg-blue-400 w-2/3 left-[18%] space-y-4 rounded-3xl">
             <div className="flex justify-end">
                 <button type="button" onClick={HideForm} className="text-white font-semibold text-base rounded-lg bg-red-500 px-3 py-[2px]">X</button>
             </div>
